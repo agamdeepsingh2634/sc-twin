@@ -1,0 +1,43 @@
+scenario,policy,metric,mean_diff_vs_lean,p_value
+No disruption,Buffered,cost_total,153558.34811643834,1.595764423305974e-34
+No disruption,Buffered,fill_rate,0.0157420454779315,1.4361464127613523e-34
+No disruption,Lean + Dual sourcing,cost_total,0.0,1.0
+No disruption,Lean + Dual sourcing,fill_rate,0.0,1.0
+No disruption,Base-stock,cost_total,3455505.9308219175,1.4361464127613523e-34
+No disruption,Base-stock,fill_rate,0.016260393394825857,1.4361464127613523e-34
+Supplier outage,Buffered,cost_total,-960660.0330479452,1.4361464127613523e-34
+Supplier outage,Buffered,fill_rate,0.07017726137751247,1.4361464127613523e-34
+Supplier outage,Lean + Dual sourcing,cost_total,67934.64469178082,4.888020875754655e-06
+Supplier outage,Lean + Dual sourcing,fill_rate,0.03721877206264141,1.4361464127613523e-34
+Supplier outage,Base-stock,cost_total,2268913.882876712,1.4361464127613523e-34
+Supplier outage,Base-stock,fill_rate,0.07261030572573525,1.4361464127613523e-34
+Port blockage,Buffered,cost_total,-324551.1183219178,2.0417119605863887e-31
+Port blockage,Buffered,fill_rate,0.041833784043176815,1.4361464127613523e-34
+Port blockage,Lean + Dual sourcing,cost_total,-2579.4059931507127,0.47309026750111804
+Port blockage,Lean + Dual sourcing,fill_rate,0.024453347188456848,1.4361464127613523e-34
+Port blockage,Base-stock,cost_total,2978226.1339041097,1.4361464127613523e-34
+Port blockage,Base-stock,fill_rate,0.04233906208212286,1.4361464127613523e-34
+Demand surge,Buffered,cost_total,-331555.04899930814,1.0663559321889885e-33
+Demand surge,Buffered,fill_rate,0.03573143303572844,1.4361464127613523e-34
+Demand surge,Lean + Dual sourcing,cost_total,0.0,1.0
+Demand surge,Lean + Dual sourcing,fill_rate,0.0,1.0
+Demand surge,Base-stock,cost_total,2871123.6131123137,1.4361464127613523e-34
+Demand surge,Base-stock,fill_rate,0.039114933216020206,1.4361464127613523e-34
+Factory capacity loss,Buffered,cost_total,-449907.71891356824,1.4361464127613523e-34
+Factory capacity loss,Buffered,fill_rate,0.041203098438413896,1.4361464127613523e-34
+Factory capacity loss,Lean + Dual sourcing,cost_total,0.0,1.0
+Factory capacity loss,Lean + Dual sourcing,fill_rate,0.0,1.0
+Factory capacity loss,Base-stock,cost_total,2691165.634219987,1.4361464127613523e-34
+Factory capacity loss,Base-stock,fill_rate,0.04758258482743308,1.4361464127613523e-34
+DC flood (North),Buffered,cost_total,95259.79554794518,6.579124243087963e-31
+DC flood (North),Buffered,fill_rate,0.01884099135545628,1.4361464127613523e-34
+DC flood (North),Lean + Dual sourcing,cost_total,0.0,1.0
+DC flood (North),Lean + Dual sourcing,fill_rate,0.0,1.0
+DC flood (North),Base-stock,cost_total,3393871.4684931505,1.4361464127613523e-34
+DC flood (North),Base-stock,fill_rate,0.01891538459914973,1.4361464127613523e-34
+Compound: outage + surge,Buffered,cost_total,-1353022.5658802288,1.4361464127613523e-34
+Compound: outage + surge,Buffered,fill_rate,0.08201117088386203,1.4361464127613523e-34
+Compound: outage + surge,Lean + Dual sourcing,cost_total,34653.49305341128,0.013664508995149025
+Compound: outage + surge,Lean + Dual sourcing,fill_rate,0.03737535904840153,1.4361464127613523e-34
+Compound: outage + surge,Base-stock,cost_total,1510560.4882381693,1.4361464127613523e-34
+Compound: outage + surge,Base-stock,fill_rate,0.09640387073065469,1.4361464127613523e-34

@@ -1,0 +1,6 @@
+numpy>=1.26
+pandas>=2.0
+scipy>=1.11
+matplotlib>=3.8
+# GPU training only (experiments/train_dqn_torch.py):
+# torch>=2.2   (install the CUDA build from https://pytorch.org/get-started/locally/)

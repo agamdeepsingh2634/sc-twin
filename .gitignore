@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Kaggle M5 data (download separately; see README)
+*.csv.zip
+sales_train_*.csv
+calendar.csv
+sell_prices.csv
+results/m5_foods_daily.npz
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,628 @@
+
+===== run_all QUICK started Tue Nov 17 21:08:23 2026 =====
+Device: CUDA: NVIDIA GeForce RTX 3050 Laptop GPU
+
+===== [1/22] Synthetic | baseline (5,600 runs) Tue Nov 17 21:08:25 2026 =====
+280 runs in 3.2s -> C:\Users\agamd\Documents\sc_twin\results
+
+===== [2/22] Synthetic | baseline figures Tue Nov 17 21:08:43 2026 =====
+figures saved
+
+===== [3/22] Synthetic | NSGA-II optimisation Tue Nov 17 21:08:46 2026 =====
+gen   1  HV= 143.35  front=12  minCost=10.75L  minLost=0.255%  (2s)
+gen   2  HV= 144.17  front=12  minCost=10.73L  minLost=0.242%  (3s)
+gen   3  HV= 145.04  front=12  minCost=10.67L  minLost=0.242%  (4s)
+done in 6s; 24 Pareto solutions
+
+===== [4/22] Synthetic | frontier analysis Tue Nov 17 21:08:53 2026 =====
+              reference  ref_cost_L  ref_lost_pct  ref_total_L same_cost_solution  same_cost_lost_pct same_service_solution  same_service_cost_L  cost_saving_pct
+0            Lean (JIT)       13.27          5.00        23.63                P06                5.00                   P06                13.27             0.00
+1              Buffered       17.72          0.52        18.80                P14                0.52                   P14                17.72             0.00
+2  Lean + Dual sourcing       16.31          3.83        24.27                P11                1.30                   P08                13.80            15.37
+
+front on test: 13 solutions, dual sourcing chosen in 0
+min TOTAL cost (incl. lost sales): P09 total 16.96L, operating 13.97L, lost 1.43%
+knee point: P09 operating 13.97L, lost 1.43%, total 16.96L
+   policy  test_cost_L  test_lost_pct  store_s  store_S  dc_s   dc_S   fg_s   fg_S   rm_s   rm_S  dual_sourcing  recovery_time
+0     P00        10.68           6.20     2.06     6.14  4.35   9.78   3.01  15.01  12.30  30.08          False          41.31
+3     P07        13.42           4.59     2.55     5.08  5.00   9.35   4.42   7.42  12.50  20.50          False          27.34
+6     P10        14.03           1.41     7.42    12.82  8.20  14.66   4.47   5.59  12.70  30.92          False          13.69
+5     P09        13.97           1.43     7.42    12.84  8.20  14.64   4.47   5.47  12.61  30.83          False          14.83
+9     P13        16.46           0.59     7.92    12.80  3.53  14.24   9.98  16.94  20.81  34.71          False           6.54
+12    P18        20.51           0.11     7.12    12.77  2.84  13.14  14.52  25.53  27.79  33.99          False           2.17
+
+references:
+                  policy  test_cost_L  test_lost_pct  store_s  store_S  dc_s  dc_S  fg_s  fg_S  rm_s  rm_S  dual_sourcing  recovery_time
+0            Lean (JIT)        13.27           5.00      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0          False          30.26
+1              Buffered        17.72           0.52      4.0      8.0   9.0  16.0   8.0  14.0  25.0  40.0          False           6.71
+2  Lean + Dual sourcing        16.31           3.83      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0           True          29.60
+
+===== [5/22] Synthetic | frontier figures Tue Nov 17 21:08:54 2026 =====
+saved
+
+===== [6/22] Synthetic | sensitivity analysis Tue Nov 17 21:08:55 2026 =====
+done in 22s
+
+===== [7/22] Synthetic | sensitivity figures Tue Nov 17 21:09:18 2026 =====
+saved
+
+===== [8/22] Synthetic | ANOVA + node criticality Tue Nov 17 21:09:20 2026 =====
+       response             source          SS   df          F  p_value  eta_sq
+0     fill_rate           scenario      0.0736    6   146.4099      0.0  0.3023
+1     fill_rate             policy      0.1120    3   445.4387      0.0  0.4599
+2     fill_rate  scenario x policy      0.0368   18    24.3784      0.0  0.1510
+3     fill_rate              error      0.0211  252        NaN      NaN  0.0867
+4  cost_total_L           scenario   3327.3610    6   150.9925      0.0  0.0654
+5  cost_total_L             policy  44130.9142    3  4005.2382      0.0  0.8671
+6  cost_total_L  scenario x policy   2511.2906   18    37.9867      0.0  0.0493
+7  cost_total_L              error    925.5372  252        NaN      NaN  0.0182
+              node            policy  lost_sales_cases  lost_pct  time_to_impact  share_never_impacted  recovery_time
+0      Supplier S1        Lean (JIT)           4694.17      6.76           19.14                  0.00          32.81
+1      Supplier S1          Buffered             29.18      0.09          128.25                  0.92           0.35
+2      Supplier S1  Optimised (knee)           1720.49      2.11           31.72                  0.00          22.56
+3   Port / S1 lane        Lean (JIT)           5069.77      7.22           19.14                  0.00          38.25
+4   Port / S1 lane          Buffered             30.67      0.09          120.44                  0.91           0.42
+5   Port / S1 lane  Optimised (knee)           2317.40      2.84           31.72                  0.00          26.48
+6          Factory        Lean (JIT)           5040.09      7.19            9.99                  0.00          34.07
+7          Factory          Buffered           2201.15      2.75           19.77                  0.00          20.95
+8          Factory  Optimised (knee)           2580.15      3.17           18.28                  0.00          26.00
+9         DC North        Lean (JIT)           3165.70      4.89            2.25                  0.00          28.22
+10        DC North          Buffered           2413.57      3.01            4.44                  0.00          23.56
+11        DC North  Optimised (knee)           1874.89      2.30            8.00                  0.00          20.00
+12         DC West        Lean (JIT)           3167.53      4.89            2.34                  0.00          27.28
+13         DC West          Buffered           2427.54      3.03            4.33                  0.00          23.60
+14         DC West  Optimised (knee)           1882.79      2.31            7.69                  0.00          20.24
+
+===== [9/22] Synthetic | tabular Q-learning Tue Nov 17 21:09:28 2026 =====
+trained in 4s
+                                  total_L                                               lost                                  
+policy                   Optimised (knee) Optimised + dual Q-learning agent Optimised (knee) Optimised + dual Q-learning agent
+scenario                                                                                                                      
+No disruption                       15.14            15.14            18.06             0.00             0.00             0.00
+Supplier outage                     19.25            24.94            21.91             3.00             0.99             0.17
+Port blockage                       14.55            20.28            18.65             0.23             0.01             0.00
+Demand surge                        15.42            15.42            18.39             0.56             0.56             0.51
+Factory capacity loss               15.88            15.88            18.76             1.09             1.09             1.02
+DC flood (North)                    15.79            15.79            18.70             0.31             0.31             0.31
+Compound: outage + surge            26.84            31.08            29.91             6.49             4.30             5.55
+                  total_L   op_L  lost    rec
+policy                                       
+Optimised (knee)    17.55  14.06  1.67  14.36
+Optimised + dual    19.79  17.61  1.04  13.15
+Q-learning agent    20.63  18.35  1.08  11.72
+act_Wait              0.212629
+act_S1 to 20d         0.171076
+act_S1 to 32d         0.591142
+act_S2 to 15d         0.008076
+act_S2 to 25d         0.015225
+act_Re-route to S2    0.001853
+dtype: float64
+total 12s
+
+===== [10/22] Synthetic | deep Q-network on GPU Tue Nov 17 21:09:41 2026 =====
+device: cuda | demand: synthetic | episodes: 60
+ep      3  eps=0.94  cost=84.91L  fill=89.69%  (0s)
+ep      6  eps=0.86  cost=80.30L  fill=91.20%  (1s)
+ep      9  eps=0.78  cost=79.77L  fill=91.68%  (2s)
+ep     12  eps=0.69  cost=78.62L  fill=91.98%  (4s)
+ep     15  eps=0.61  cost=76.33L  fill=92.95%  (6s)
+ep     18  eps=0.53  cost=76.66L  fill=92.41%  (7s)
+ep     21  eps=0.44  cost=76.81L  fill=92.32%  (9s)
+ep     24  eps=0.36  cost=74.27L  fill=93.19%  (11s)
+ep     27  eps=0.28  cost=73.31L  fill=92.98%  (13s)
+ep     30  eps=0.19  cost=75.23L  fill=91.85%  (14s)
+ep     33  eps=0.11  cost=73.71L  fill=91.73%  (16s)
+ep     36  eps=0.05  cost=70.29L  fill=92.07%  (18s)
+ep     39  eps=0.05  cost=68.74L  fill=92.01%  (20s)
+ep     42  eps=0.05  cost=67.78L  fill=91.76%  (22s)
+ep     45  eps=0.05  cost=65.44L  fill=92.15%  (24s)
+ep     48  eps=0.05  cost=64.34L  fill=91.97%  (26s)
+ep     51  eps=0.05  cost=63.35L  fill=91.72%  (28s)
+ep     54  eps=0.05  cost=62.63L  fill=91.51%  (30s)
+ep     57  eps=0.05  cost=62.78L  fill=91.04%  (32s)
+ep     60  eps=0.05  cost=63.68L  fill=90.20%  (34s)
+                      total_L   lost    rec
+policy                                     
+Optimised (knee)        16.96   1.43  14.83
+Deep Q-network (GPU)    89.79  38.59   4.30
+done in 39s on cuda
+
+===== [11/22] Real M5 | baseline (5,600 runs) Tue Nov 17 21:10:25 2026 =====
+280 runs in 2.9s -> C:\Users\agamd\Documents\sc_twin\results\m5
+
+===== [12/22] Real M5 | baseline figures Tue Nov 17 21:10:29 2026 =====
+figures saved
+
+===== [13/22] Real M5 | NSGA-II optimisation Tue Nov 17 21:10:31 2026 =====
+gen   1  HV= 155.41  front=11  minCost=10.84L  minLost=0.044%  (2s)
+gen   2  HV= 156.61  front=12  minCost=10.82L  minLost=0.044%  (3s)
+gen   3  HV= 157.85  front=12  minCost=10.66L  minLost=0.044%  (3s)
+done in 5s; 21 Pareto solutions
+
+===== [14/22] Real M5 | frontier analysis Tue Nov 17 21:10:37 2026 =====
+              reference  ref_cost_L  ref_lost_pct  ref_total_L same_cost_solution  same_cost_lost_pct same_service_solution  same_service_cost_L  cost_saving_pct
+0            Lean (JIT)       13.25          2.58        18.10                P05                2.58                   P05                13.25             0.00
+1              Buffered       18.27          0.15        18.55                P16                0.19                   P17                19.97            -9.27
+2  Lean + Dual sourcing       16.05          1.33        18.57                P12                0.58                   P09                14.54             9.43
+
+front on test: 17 solutions, dual sourcing chosen in 0
+min TOTAL cost (incl. lost sales): P11 total 15.92L, operating 14.77L, lost 0.61%
+knee point: P11 operating 14.77L, lost 0.61%, total 15.92L
+   policy  test_cost_L  test_lost_pct  store_s  store_S  dc_s   dc_S   fg_s   fg_S   rm_s   rm_S  dual_sourcing  recovery_time
+0     P00        10.68           5.38     1.63     5.82  4.35   9.80   2.35  14.00  13.60  31.38          False          28.86
+4     P04        13.19           2.76     2.44     4.94  5.00   8.97   4.00   7.53  12.00  19.90          False          18.03
+8     P09        14.54           0.74     7.42    12.82  8.20  14.64   4.17   5.17  12.61  31.46          False           6.49
+9     P11        14.77           0.61     7.42    12.82  8.20  14.66   4.47   5.59  12.70  30.92          False           4.94
+12    P14        16.78           0.25     7.34    12.21  3.04  13.76   9.98  17.25  20.05  32.09          False           3.14
+16    P19        20.98           0.01     7.50    13.13  2.84  13.14  14.23  26.23  27.79  33.99          False           0.06
+
+references:
+                  policy  test_cost_L  test_lost_pct  store_s  store_S  dc_s  dc_S  fg_s  fg_S  rm_s  rm_S  dual_sourcing  recovery_time
+0            Lean (JIT)        13.25           2.58      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0          False          17.03
+1              Buffered        18.27           0.15      4.0      8.0   9.0  16.0   8.0  14.0  25.0  40.0          False           2.17
+2  Lean + Dual sourcing        16.05           1.33      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0           True          12.54
+
+===== [15/22] Real M5 | frontier figures Tue Nov 17 21:10:37 2026 =====
+saved
+
+===== [16/22] Real M5 | sensitivity analysis Tue Nov 17 21:10:39 2026 =====
+done in 21s
+
+===== [17/22] Real M5 | sensitivity figures Tue Nov 17 21:11:01 2026 =====
+saved
+
+===== [18/22] Real M5 | ANOVA + node criticality Tue Nov 17 21:11:03 2026 =====
+       response             source          SS   df           F  p_value  eta_sq
+0     fill_rate           scenario      0.0345    6    118.2796      0.0  0.2984
+1     fill_rate             policy      0.0320    3    218.9944      0.0  0.2763
+2     fill_rate  scenario x policy      0.0369   18     42.1872      0.0  0.3193
+3     fill_rate              error      0.0123  252         NaN      NaN  0.1060
+4  cost_total_L           scenario   1512.8618    6    136.0023      0.0  0.0247
+5  cost_total_L             policy  57314.1720    3  10304.7851      0.0  0.9340
+6  cost_total_L  scenario x policy   2072.1287   18     62.0930      0.0  0.0338
+7  cost_total_L              error    467.1995  252         NaN      NaN  0.0076
+              node            policy  lost_sales_cases  lost_pct  time_to_impact  share_never_impacted  recovery_time
+0      Supplier S1        Lean (JIT)           2684.53      3.74           26.10                  0.00          19.99
+1      Supplier S1          Buffered              0.00      0.00             NaN                  1.00           0.00
+2      Supplier S1  Optimised (knee)            258.44      0.35           35.29                  0.58           5.29
+3   Port / S1 lane        Lean (JIT)           3206.54      4.45           26.10                  0.00          26.45
+4   Port / S1 lane          Buffered              0.00      0.00             NaN                  1.00           0.00
+5   Port / S1 lane  Optimised (knee)            571.72      0.77           38.53                  0.25          10.12
+6          Factory        Lean (JIT)           3392.69      4.70           13.02                  0.00          23.24
+7          Factory          Buffered            867.96      1.18           23.53                  0.01          12.87
+8          Factory  Optimised (knee)           1126.54      1.53           22.46                  0.00          15.14
+9         DC North        Lean (JIT)           2283.56      3.20            3.03                  0.00          24.95
+10        DC North          Buffered           1987.14      2.70            5.17                  0.00          22.81
+11        DC North  Optimised (knee)           1468.36      2.00            9.32                  0.00          18.66
+12         DC West        Lean (JIT)           2293.84      3.21            3.04                  0.00          24.95
+13         DC West          Buffered           1980.76      2.69            5.34                  0.00          22.65
+14         DC West  Optimised (knee)           1511.60      2.05            9.01                  0.00          18.98
+
+===== [19/22] Real M5 | tabular Q-learning Tue Nov 17 21:11:12 2026 =====
+trained in 4s
+                                  total_L                                               lost                                  
+policy                   Optimised (knee) Optimised + dual Q-learning agent Optimised (knee) Optimised + dual Q-learning agent
+scenario                                                                                                                      
+No disruption                       15.38            15.38            18.00             0.00             0.00             0.00
+Supplier outage                     16.37            23.37            24.78             1.20             0.04             0.38
+Port blockage                       14.96            20.38            19.40             0.00             0.00             0.00
+Demand surge                        15.17            15.17            17.85             0.10             0.10             0.10
+Factory capacity loss               14.90            14.90            22.29             0.08             0.08             0.08
+DC flood (North)                    15.62            15.62            18.20             0.12             0.12             0.12
+Compound: outage + surge            21.31            26.48            25.77             3.92             1.84             1.60
+                  total_L   op_L  lost   rec
+policy                                      
+Optimised (knee)    16.25  14.77  0.78  5.82
+Optimised + dual    18.76  18.16  0.31  4.35
+Q-learning agent    20.90  20.28  0.33  4.71
+act_Wait              0.193464
+act_S1 to 20d         0.150124
+act_S1 to 32d         0.341813
+act_S2 to 15d         0.225179
+act_S2 to 25d         0.082622
+act_Re-route to S2    0.006797
+dtype: float64
+total 11s
+
+===== [20/22] Real M5 | deep Q-network on GPU Tue Nov 17 21:11:24 2026 =====
+device: cuda | demand: M5 real | episodes: 60
+ep      3  eps=0.94  cost=66.89L  fill=98.98%  (0s)
+ep      6  eps=0.86  cost=64.34L  fill=99.47%  (1s)
+ep      9  eps=0.78  cost=64.85L  fill=98.99%  (2s)
+ep     12  eps=0.69  cost=65.09L  fill=98.50%  (4s)
+ep     15  eps=0.61  cost=64.03L  fill=98.56%  (6s)
+ep     18  eps=0.53  cost=64.66L  fill=97.98%  (8s)
+ep     21  eps=0.44  cost=65.77L  fill=97.36%  (10s)
+ep     24  eps=0.36  cost=64.13L  fill=97.55%  (12s)
+ep     27  eps=0.28  cost=61.47L  fill=97.80%  (13s)
+ep     30  eps=0.19  cost=59.99L  fill=97.77%  (15s)
+ep     33  eps=0.11  cost=56.75L  fill=97.98%  (17s)
+ep     36  eps=0.05  cost=54.57L  fill=97.94%  (20s)
+ep     39  eps=0.05  cost=54.22L  fill=97.43%  (22s)
+ep     42  eps=0.05  cost=53.58L  fill=96.94%  (24s)
+ep     45  eps=0.05  cost=52.93L  fill=96.55%  (25s)
+ep     48  eps=0.05  cost=52.98L  fill=95.97%  (27s)
+ep     51  eps=0.05  cost=53.45L  fill=95.29%  (29s)
+ep     54  eps=0.05  cost=53.77L  fill=94.79%  (31s)
+ep     57  eps=0.05  cost=54.27L  fill=94.32%  (33s)
+ep     60  eps=0.05  cost=56.97L  fill=93.16%  (35s)
+                      total_L   lost    rec
+policy                                     
+Optimised (knee)        15.92   0.61   4.94
+Deep Q-network (GPU)    38.61  14.90  27.43
+done in 40s on cuda
+
+===== [21/22] Real M5 | transfer test Tue Nov 17 21:12:09 2026 =====
+                        policy  total_L   op_L  lost_pct  recovery
+0  Knee optimised on synthetic    16.27  14.74      0.80      5.83
+1    Knee optimised on real M5    16.25  14.77      0.78      5.82
+
+===== [22/22] Real M5 | demand comparison figure Tue Nov 17 21:12:13 2026 =====
+  wd = pd.to_datetime(dates).dayofweek.values
+saved 0.1935411906604013 0.18270690409633467
+
+Device: CUDA: NVIDIA GeForce RTX 3050 Laptop GPU
+Total: 3.9 min
+OK                    0.3 min  Synthetic | baseline (5,600 runs)
+OK                    0.0 min  Synthetic | baseline figures
+OK                    0.1 min  Synthetic | NSGA-II optimisation
+OK                    0.0 min  Synthetic | frontier analysis
+OK                    0.0 min  Synthetic | frontier figures
+OK                    0.4 min  Synthetic | sensitivity analysis
+OK                    0.0 min  Synthetic | sensitivity figures
+OK                    0.1 min  Synthetic | ANOVA + node criticality
+OK                    0.2 min  Synthetic | tabular Q-learning
+OK                    0.7 min  Synthetic | deep Q-network on GPU
+OK                    0.1 min  Real M5 | baseline (5,600 runs)
+OK                    0.0 min  Real M5 | baseline figures
+OK                    0.1 min  Real M5 | NSGA-II optimisation
+OK                    0.0 min  Real M5 | frontier analysis
+OK                    0.0 min  Real M5 | frontier figures
+OK                    0.4 min  Real M5 | sensitivity analysis
+OK                    0.0 min  Real M5 | sensitivity figures
+OK                    0.2 min  Real M5 | ANOVA + node criticality
+OK                    0.2 min  Real M5 | tabular Q-learning
+OK                    0.7 min  Real M5 | deep Q-network on GPU
+OK                    0.1 min  Real M5 | transfer test
+OK                    0.0 min  Real M5 | demand comparison figure
+
+===== run_all started Tue Nov 17 21:17:02 2026 =====
+Device: CUDA: NVIDIA GeForce RTX 3050 Laptop GPU
+
+===== [1/22] Synthetic | baseline (5,600 runs) Tue Nov 17 21:17:03 2026 =====
+5600 runs in 61.9s -> C:\Users\agamd\Documents\sc_twin\results
+
+===== [2/22] Synthetic | baseline figures Tue Nov 17 21:18:07 2026 =====
+figures saved
+
+===== [3/22] Synthetic | NSGA-II optimisation Tue Nov 17 21:18:08 2026 =====
+gen   1  HV= 144.31  front=25  minCost=10.75L  minLost=0.039%  (6s)
+gen   2  HV= 145.40  front=39  minCost=10.75L  minLost=0.033%  (8s)
+gen   3  HV= 147.34  front=48  minCost=10.75L  minLost=0.033%  (10s)
+gen   4  HV= 150.00  front=48  minCost=10.63L  minLost=0.033%  (12s)
+gen   5  HV= 154.43  front=48  minCost=10.06L  minLost=0.032%  (14s)
+gen   6  HV= 154.52  front=48  minCost=10.06L  minLost=0.027%  (16s)
+gen   7  HV= 157.98  front=48  minCost=10.06L  minLost=0.026%  (19s)
+gen   8  HV= 159.14  front=48  minCost=9.86L  minLost=0.026%  (21s)
+gen   9  HV= 160.15  front=48  minCost=9.83L  minLost=0.026%  (23s)
+gen  10  HV= 160.68  front=48  minCost=9.78L  minLost=0.026%  (25s)
+gen  11  HV= 161.28  front=48  minCost=9.78L  minLost=0.026%  (27s)
+gen  12  HV= 162.58  front=48  minCost=9.58L  minLost=0.026%  (30s)
+gen  13  HV= 163.19  front=48  minCost=9.55L  minLost=0.026%  (32s)
+gen  14  HV= 163.91  front=48  minCost=9.55L  minLost=0.026%  (34s)
+gen  15  HV= 164.16  front=48  minCost=9.55L  minLost=0.026%  (36s)
+gen  16  HV= 164.81  front=48  minCost=9.26L  minLost=0.026%  (38s)
+gen  17  HV= 165.47  front=48  minCost=9.26L  minLost=0.026%  (40s)
+gen  18  HV= 166.08  front=48  minCost=9.26L  minLost=0.026%  (43s)
+gen  19  HV= 166.54  front=48  minCost=9.20L  minLost=0.026%  (45s)
+gen  20  HV= 166.80  front=48  minCost=9.20L  minLost=0.026%  (47s)
+gen  21  HV= 167.00  front=48  minCost=9.14L  minLost=0.026%  (50s)
+gen  22  HV= 168.47  front=48  minCost=8.87L  minLost=0.026%  (52s)
+gen  23  HV= 168.58  front=48  minCost=8.87L  minLost=0.026%  (54s)
+gen  24  HV= 168.63  front=48  minCost=8.87L  minLost=0.026%  (57s)
+gen  25  HV= 168.88  front=48  minCost=8.85L  minLost=0.026%  (60s)
+gen  26  HV= 168.78  front=48  minCost=8.85L  minLost=0.026%  (62s)
+gen  27  HV= 168.78  front=48  minCost=8.84L  minLost=0.026%  (65s)
+gen  28  HV= 169.02  front=48  minCost=8.84L  minLost=0.026%  (67s)
+gen  29  HV= 169.35  front=48  minCost=8.84L  minLost=0.026%  (69s)
+gen  30  HV= 170.00  front=48  minCost=8.49L  minLost=0.026%  (72s)
+gen  31  HV= 170.12  front=48  minCost=8.46L  minLost=0.026%  (74s)
+gen  32  HV= 170.03  front=48  minCost=8.45L  minLost=0.026%  (77s)
+gen  33  HV= 170.25  front=48  minCost=8.45L  minLost=0.026%  (79s)
+gen  34  HV= 170.34  front=48  minCost=8.45L  minLost=0.025%  (82s)
+gen  35  HV= 170.34  front=48  minCost=8.45L  minLost=0.025%  (84s)
+gen  36  HV= 170.73  front=48  minCost=8.45L  minLost=0.025%  (87s)
+gen  37  HV= 170.87  front=48  minCost=8.45L  minLost=0.025%  (89s)
+gen  38  HV= 170.84  front=48  minCost=8.45L  minLost=0.025%  (92s)
+gen  39  HV= 171.01  front=48  minCost=8.45L  minLost=0.025%  (94s)
+gen  40  HV= 170.95  front=48  minCost=8.45L  minLost=0.025%  (96s)
+gen  41  HV= 171.01  front=48  minCost=8.45L  minLost=0.025%  (99s)
+gen  42  HV= 171.11  front=48  minCost=8.45L  minLost=0.025%  (101s)
+gen  43  HV= 171.16  front=48  minCost=8.45L  minLost=0.025%  (104s)
+gen  44  HV= 171.23  front=48  minCost=8.45L  minLost=0.025%  (106s)
+gen  45  HV= 171.41  front=48  minCost=8.45L  minLost=0.025%  (108s)
+gen  46  HV= 171.39  front=48  minCost=8.45L  minLost=0.025%  (111s)
+gen  47  HV= 171.54  front=48  minCost=8.45L  minLost=0.025%  (113s)
+gen  48  HV= 171.75  front=48  minCost=8.44L  minLost=0.025%  (116s)
+gen  49  HV= 171.84  front=48  minCost=8.44L  minLost=0.025%  (118s)
+gen  50  HV= 171.93  front=48  minCost=8.44L  minLost=0.018%  (120s)
+gen  51  HV= 172.04  front=48  minCost=8.44L  minLost=0.018%  (123s)
+gen  52  HV= 172.14  front=48  minCost=8.44L  minLost=0.018%  (125s)
+gen  53  HV= 172.20  front=48  minCost=8.44L  minLost=0.018%  (128s)
+gen  54  HV= 172.07  front=48  minCost=8.44L  minLost=0.018%  (130s)
+gen  55  HV= 172.10  front=48  minCost=8.44L  minLost=0.018%  (132s)
+gen  56  HV= 172.12  front=48  minCost=8.44L  minLost=0.018%  (134s)
+gen  57  HV= 172.17  front=48  minCost=8.44L  minLost=0.018%  (137s)
+gen  58  HV= 172.30  front=48  minCost=8.44L  minLost=0.018%  (139s)
+gen  59  HV= 172.46  front=48  minCost=8.44L  minLost=0.018%  (142s)
+gen  60  HV= 172.18  front=48  minCost=8.44L  minLost=0.018%  (144s)
+done in 288s; 207 Pareto solutions
+
+===== [4/22] Synthetic | frontier analysis Tue Nov 17 21:22:57 2026 =====
+              reference  ref_cost_L  ref_lost_pct  ref_total_L same_cost_solution  same_cost_lost_pct same_service_solution  same_service_cost_L  cost_saving_pct
+0            Lean (JIT)       13.26          5.19        24.02               P121                1.74                   P55                 9.80            26.08
+1              Buffered       17.74          0.76        19.32               P164                0.57                  P158                16.86             4.96
+2  Lean + Dual sourcing       16.28          3.81        24.20               P155                0.86                   P69                10.71            34.23
+
+front on test: 127 solutions, dual sourcing chosen in 0
+min TOTAL cost (incl. lost sales): P115 total 16.77L, operating 12.70L, lost 1.94%
+knee point: P115 operating 12.70L, lost 1.94%, total 16.77L
+    policy  test_cost_L  test_lost_pct  store_s  store_S   dc_s   dc_S   fg_s   fg_S   rm_s   rm_S  dual_sourcing  recovery_time
+0      P02         8.45          10.01     2.62     8.15   4.36  11.07   1.49  13.12   9.63  27.48          False          87.28
+31     P48         9.63           5.62     4.43     9.52   2.93  11.10   1.00  12.95  12.15  31.24          False          33.80
+63    P110        12.56           2.08     7.03    14.69   8.60  15.26   4.76   5.77  10.52  34.91          False          18.77
+64    P115        12.70           1.94     5.89    13.26   8.30  14.96   4.93   5.94  11.14  35.34          False          17.18
+95    P160        17.11           0.66     7.38    12.79   9.51  17.80   7.05   9.03  20.12  36.65          False           6.85
+126   P206        23.59           0.04     8.00    14.05  13.07  18.08  11.66  20.80  30.68  55.66          False           0.85
+
+references:
+                  policy  test_cost_L  test_lost_pct  store_s  store_S  dc_s  dc_S  fg_s  fg_S  rm_s  rm_S  dual_sourcing  recovery_time
+0            Lean (JIT)        13.26           5.19      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0          False          30.01
+1              Buffered        17.74           0.76      4.0      8.0   9.0  16.0   8.0  14.0  25.0  40.0          False           7.95
+2  Lean + Dual sourcing        16.28           3.81      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0           True          27.22
+
+===== [5/22] Synthetic | frontier figures Tue Nov 17 21:22:58 2026 =====
+saved
+
+===== [6/22] Synthetic | sensitivity analysis Tue Nov 17 21:23:00 2026 =====
+done in 26s
+
+===== [7/22] Synthetic | sensitivity figures Tue Nov 17 21:23:26 2026 =====
+saved
+
+===== [8/22] Synthetic | ANOVA + node criticality Tue Nov 17 21:23:28 2026 =====
+       response             source           SS    df           F  p_value  eta_sq
+0     fill_rate           scenario       1.1220     6   2498.1841      0.0  0.2532
+1     fill_rate             policy       2.2318     3   9938.4426      0.0  0.5037
+2     fill_rate  scenario x policy       0.6597    18    489.6188      0.0  0.1489
+3     fill_rate              error       0.4171  5572         NaN      NaN  0.0941
+4  cost_total_L           scenario   51530.5368     6   2539.2109      0.0  0.0510
+5  cost_total_L             policy  893539.1498     3  88059.7970      0.0  0.8836
+6  cost_total_L  scenario x policy   47382.9372    18    778.2781      0.0  0.0469
+7  cost_total_L              error   18846.2852  5572         NaN      NaN  0.0186
+              node            policy  lost_sales_cases  lost_pct  time_to_impact  share_never_impacted  recovery_time
+0      Supplier S1        Lean (JIT)           4694.17      6.76           19.14                  0.00          32.81
+1      Supplier S1          Buffered             29.18      0.09          128.25                  0.92           0.35
+2      Supplier S1  Optimised (knee)           2179.47      2.84           30.59                  0.00          29.28
+3   Port / S1 lane        Lean (JIT)           5069.77      7.22           19.14                  0.00          38.25
+4   Port / S1 lane          Buffered             30.67      0.09          120.44                  0.91           0.42
+5   Port / S1 lane  Optimised (knee)           2429.85      3.14           30.56                  0.00          32.66
+6          Factory        Lean (JIT)           5040.09      7.19            9.99                  0.00          34.07
+7          Factory          Buffered           2201.15      2.75           19.77                  0.00          20.95
+8          Factory  Optimised (knee)           2773.24      3.57           18.53                  0.00          31.71
+9         DC North        Lean (JIT)           3165.70      4.89            2.25                  0.00          28.22
+10        DC North          Buffered           2413.57      3.01            4.44                  0.00          23.56
+11        DC North  Optimised (knee)           1950.35      2.40            7.11                  0.00          20.89
+12         DC West        Lean (JIT)           3167.53      4.89            2.34                  0.00          27.28
+13         DC West          Buffered           2427.54      3.03            4.33                  0.00          23.60
+14         DC West  Optimised (knee)           1957.76      2.41            7.02                  0.00          20.91
+
+===== [9/22] Synthetic | tabular Q-learning Tue Nov 17 21:23:39 2026 =====
+trained in 266s
+                                  total_L                                               lost                                  
+policy                   Optimised (knee) Optimised + dual Q-learning agent Optimised (knee) Optimised + dual Q-learning agent
+scenario                                                                                                                      
+No disruption                       14.41            14.41            17.45             0.00             0.00             0.00
+Supplier outage                     18.32            23.11            22.76             3.26             0.98             0.22
+Port blockage                       13.68            19.60            19.43             0.53             0.24             0.04
+Demand surge                        14.64            14.64            17.40             1.17             1.17             0.45
+Factory capacity loss               14.70            14.70            17.36             1.24             1.24             0.74
+DC flood (North)                    15.35            15.35            18.33             0.39             0.39             0.39
+Compound: outage + surge            26.28            29.90            28.01             7.00             4.65             3.18
+                  total_L   op_L  lost    rec
+policy                                       
+Optimised (knee)    16.77  12.70  1.94  17.18
+Optimised + dual    18.81  16.21  1.24  15.00
+Q-learning agent    20.11  18.59  0.72   8.81
+act_Wait              0.005623
+act_S1 to 20d         0.502975
+act_S1 to 32d         0.413438
+act_S2 to 15d         0.006823
+act_S2 to 25d         0.070163
+act_Re-route to S2    0.000978
+dtype: float64
+total 274s
+
+===== [10/22] Synthetic | deep Q-network on GPU Tue Nov 17 21:28:14 2026 =====
+device: cuda | demand: synthetic | episodes: 8000
+ep    400  eps=0.92  cost=68.09L  fill=96.42%  (208s)
+ep    800  eps=0.83  cost=68.37L  fill=96.15%  (429s)
+ep   1200  eps=0.75  cost=64.71L  fill=97.10%  (643s)
+ep   1600  eps=0.67  cost=66.05L  fill=96.55%  (869s)
+ep   2000  eps=0.58  cost=63.68L  fill=96.90%  (1109s)
+ep   2400  eps=0.50  cost=64.69L  fill=96.19%  (1348s)
+ep   2800  eps=0.42  cost=63.93L  fill=95.74%  (1578s)
+ep   3200  eps=0.33  cost=62.25L  fill=95.38%  (1816s)
+ep   3600  eps=0.25  cost=60.70L  fill=94.51%  (2058s)
+ep   4000  eps=0.17  cost=53.07L  fill=94.35%  (2301s)
+ep   4400  eps=0.08  cost=42.12L  fill=94.39%  (2551s)
+ep   4800  eps=0.05  cost=32.63L  fill=95.12%  (2802s)
+ep   5200  eps=0.05  cost=30.33L  fill=95.82%  (3051s)
+ep   5600  eps=0.05  cost=35.90L  fill=93.22%  (3302s)
+ep   6000  eps=0.05  cost=32.59L  fill=94.25%  (3559s)
+ep   6400  eps=0.05  cost=31.78L  fill=95.24%  (3813s)
+ep   6800  eps=0.05  cost=32.79L  fill=94.70%  (4067s)
+ep   7200  eps=0.05  cost=32.40L  fill=94.88%  (4327s)
+ep   7600  eps=0.05  cost=34.62L  fill=94.11%  (4589s)
+ep   8000  eps=0.05  cost=33.18L  fill=94.38%  (4848s)
+                      total_L  lost    rec
+policy                                    
+Optimised (knee)        16.77  1.94  17.18
+Deep Q-network (GPU)    29.06  8.61  34.66
+done in 4882s on cuda
+
+===== [11/22] Real M5 | baseline (5,600 runs) Tue Nov 17 22:49:40 2026 =====
+5600 runs in 61.5s -> C:\Users\agamd\Documents\sc_twin\results\m5
+
+===== [12/22] Real M5 | baseline figures Tue Nov 17 22:50:44 2026 =====
+figures saved
+
+===== [13/22] Real M5 | NSGA-II optimisation Tue Nov 17 22:50:46 2026 =====
+gen   1  HV= 156.79  front=24  minCost=10.66L  minLost=0.009%  (6s)
+gen   2  HV= 159.09  front=30  minCost=10.01L  minLost=0.006%  (8s)
+gen   3  HV= 161.59  front=36  minCost=10.01L  minLost=0.001%  (11s)
+gen   4  HV= 166.63  front=46  minCost=8.58L  minLost=0.001%  (13s)
+gen   5  HV= 169.40  front=48  minCost=8.52L  minLost=0.001%  (15s)
+gen   6  HV= 171.30  front=48  minCost=8.52L  minLost=0.001%  (18s)
+gen   7  HV= 174.20  front=48  minCost=8.52L  minLost=0.001%  (20s)
+gen   8  HV= 175.32  front=48  minCost=8.37L  minLost=0.001%  (22s)
+gen   9  HV= 175.73  front=48  minCost=8.37L  minLost=0.001%  (25s)
+gen  10  HV= 176.35  front=48  minCost=8.37L  minLost=0.001%  (27s)
+gen  11  HV= 176.94  front=48  minCost=8.37L  minLost=0.001%  (30s)
+gen  12  HV= 177.11  front=48  minCost=8.37L  minLost=0.001%  (33s)
+gen  13  HV= 177.14  front=48  minCost=8.37L  minLost=0.001%  (35s)
+gen  14  HV= 177.31  front=48  minCost=8.37L  minLost=0.001%  (38s)
+gen  15  HV= 177.53  front=48  minCost=8.37L  minLost=0.001%  (41s)
+gen  16  HV= 177.65  front=48  minCost=8.37L  minLost=0.001%  (43s)
+gen  17  HV= 177.73  front=48  minCost=8.37L  minLost=0.001%  (46s)
+gen  18  HV= 177.88  front=48  minCost=8.37L  minLost=0.001%  (48s)
+gen  19  HV= 178.33  front=48  minCost=8.34L  minLost=0.001%  (51s)
+gen  20  HV= 178.56  front=48  minCost=8.34L  minLost=0.001%  (53s)
+gen  21  HV= 178.55  front=48  minCost=8.34L  minLost=0.001%  (56s)
+gen  22  HV= 178.71  front=48  minCost=8.34L  minLost=0.001%  (58s)
+gen  23  HV= 179.04  front=48  minCost=8.29L  minLost=0.001%  (61s)
+gen  24  HV= 179.23  front=48  minCost=8.29L  minLost=0.001%  (63s)
+gen  25  HV= 179.81  front=48  minCost=8.28L  minLost=0.001%  (66s)
+gen  26  HV= 179.69  front=48  minCost=8.28L  minLost=0.001%  (68s)
+gen  27  HV= 180.03  front=48  minCost=8.24L  minLost=0.001%  (71s)
+gen  28  HV= 180.25  front=48  minCost=8.24L  minLost=0.001%  (73s)
+gen  29  HV= 180.47  front=48  minCost=8.18L  minLost=0.001%  (76s)
+gen  30  HV= 180.48  front=48  minCost=8.18L  minLost=0.001%  (79s)
+gen  31  HV= 180.71  front=48  minCost=8.18L  minLost=0.001%  (81s)
+gen  32  HV= 180.79  front=48  minCost=8.12L  minLost=0.001%  (84s)
+gen  33  HV= 180.91  front=48  minCost=8.12L  minLost=0.001%  (86s)
+gen  34  HV= 181.04  front=48  minCost=8.12L  minLost=0.001%  (89s)
+gen  35  HV= 181.18  front=48  minCost=8.12L  minLost=0.001%  (91s)
+gen  36  HV= 181.14  front=48  minCost=8.12L  minLost=0.001%  (94s)
+gen  37  HV= 181.24  front=48  minCost=8.12L  minLost=0.001%  (96s)
+gen  38  HV= 181.26  front=48  minCost=8.12L  minLost=0.001%  (99s)
+gen  39  HV= 181.16  front=48  minCost=8.12L  minLost=0.001%  (101s)
+gen  40  HV= 181.34  front=48  minCost=8.02L  minLost=0.001%  (104s)
+gen  41  HV= 181.23  front=48  minCost=8.02L  minLost=0.001%  (106s)
+gen  42  HV= 181.43  front=48  minCost=8.02L  minLost=0.001%  (109s)
+gen  43  HV= 181.63  front=48  minCost=8.02L  minLost=0.001%  (111s)
+gen  44  HV= 181.89  front=48  minCost=8.01L  minLost=0.001%  (114s)
+gen  45  HV= 182.13  front=48  minCost=8.01L  minLost=0.001%  (116s)
+gen  46  HV= 182.19  front=48  minCost=8.01L  minLost=0.001%  (119s)
+gen  47  HV= 182.43  front=48  minCost=8.01L  minLost=0.001%  (121s)
+gen  48  HV= 182.47  front=48  minCost=8.01L  minLost=0.001%  (124s)
+gen  49  HV= 182.60  front=48  minCost=8.01L  minLost=0.001%  (126s)
+gen  50  HV= 182.82  front=48  minCost=8.01L  minLost=0.001%  (129s)
+gen  51  HV= 183.12  front=48  minCost=8.01L  minLost=0.001%  (131s)
+gen  52  HV= 183.24  front=48  minCost=8.01L  minLost=0.001%  (134s)
+gen  53  HV= 183.30  front=48  minCost=8.01L  minLost=0.001%  (136s)
+gen  54  HV= 183.41  front=48  minCost=8.00L  minLost=0.001%  (139s)
+gen  55  HV= 183.73  front=48  minCost=7.96L  minLost=0.001%  (141s)
+gen  56  HV= 184.04  front=48  minCost=7.96L  minLost=0.001%  (144s)
+gen  57  HV= 184.21  front=48  minCost=7.96L  minLost=0.001%  (146s)
+gen  58  HV= 184.25  front=48  minCost=7.96L  minLost=0.001%  (149s)
+gen  59  HV= 184.38  front=48  minCost=7.92L  minLost=0.001%  (151s)
+gen  60  HV= 184.48  front=48  minCost=7.92L  minLost=0.001%  (154s)
+done in 286s; 171 Pareto solutions
+
+===== [14/22] Real M5 | frontier analysis Tue Nov 17 22:55:32 2026 =====
+              reference  ref_cost_L  ref_lost_pct  ref_total_L same_cost_solution  same_cost_lost_pct same_service_solution  same_service_cost_L  cost_saving_pct
+0            Lean (JIT)       13.22          2.68        18.27                P94                1.11                   P68                10.87            17.79
+1              Buffered       18.25          0.24        18.70               P142                0.14                  P135                17.26             5.48
+2  Lean + Dual sourcing       16.08          1.37        18.67               P122                0.35                   P89                12.55            21.94
+
+front on test: 108 solutions, dual sourcing chosen in 0
+min TOTAL cost (incl. lost sales): P76 total 14.69L, operating 11.65L, lost 1.61%
+knee point: P76 operating 11.65L, lost 1.61%, total 14.69L
+    policy  test_cost_L  test_lost_pct  store_s  store_S   dc_s   dc_S   fg_s   fg_S   rm_s   rm_S  dual_sourcing  recovery_time
+0      P00         7.99           9.71     4.49     9.91   3.96  12.39   2.37   3.96   6.86  24.85          False          72.90
+27     P36         9.16           5.55     5.84    12.69   7.08  15.77   1.08   2.14   7.13  27.84          False          50.26
+54     P88        12.62           1.28     7.30    12.98   4.59  14.20   4.66   5.90  10.61  31.91          False          10.13
+49     P76        11.65           1.61     5.03    11.89   7.41  16.15   1.06   2.24  11.10  32.48          False          12.28
+81    P132        17.10           0.25     6.04    12.08   2.07  11.36  12.99  15.78  23.14  39.79          False           2.83
+107   P170        23.32           0.01     8.00    13.07  11.85  17.55  12.17  19.18  28.67  52.16          False           0.20
+
+references:
+                  policy  test_cost_L  test_lost_pct  store_s  store_S  dc_s  dc_S  fg_s  fg_S  rm_s  rm_S  dual_sourcing  recovery_time
+0            Lean (JIT)        13.22           2.68      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0          False          17.66
+1              Buffered        18.25           0.24      4.0      8.0   9.0  16.0   8.0  14.0  25.0  40.0          False           3.26
+2  Lean + Dual sourcing        16.08           1.37      2.5      5.0   5.0   9.0   4.0   7.0  12.0  20.0           True          13.55
+
+===== [15/22] Real M5 | frontier figures Tue Nov 17 22:55:33 2026 =====
+saved
+
+===== [16/22] Real M5 | sensitivity analysis Tue Nov 17 22:55:35 2026 =====
+done in 28s
+
+===== [17/22] Real M5 | sensitivity figures Tue Nov 17 22:56:04 2026 =====
+saved
+
+===== [18/22] Real M5 | ANOVA + node criticality Tue Nov 17 22:56:05 2026 =====
+       response             source            SS    df            F  p_value  eta_sq
+0     fill_rate           scenario  5.011000e-01     6    1320.7772      0.0  0.2472
+1     fill_rate             policy  5.744000e-01     3    3027.7833      0.0  0.2833
+2     fill_rate  scenario x policy  5.996000e-01    18     526.7952      0.0  0.2957
+3     fill_rate              error  3.523000e-01  5572          NaN      NaN  0.1738
+4  cost_total_L           scenario  2.363756e+04     6    1695.5444      0.0  0.0192
+5  cost_total_L             policy  1.162697e+06     3  166802.6658      0.0  0.9432
+6  cost_total_L  scenario x policy  3.337676e+04    18     798.0487      0.0  0.0271
+7  cost_total_L              error  1.294653e+04  5572          NaN      NaN  0.0105
+              node            policy  lost_sales_cases  lost_pct  time_to_impact  share_never_impacted  recovery_time
+0      Supplier S1        Lean (JIT)           2684.53      3.74           26.10                  0.00          19.99
+1      Supplier S1          Buffered              0.00      0.00             NaN                  1.00           0.00
+2      Supplier S1  Optimised (knee)           1455.57      1.98           31.11                  0.03          19.21
+3   Port / S1 lane        Lean (JIT)           3206.54      4.45           26.10                  0.00          26.45
+4   Port / S1 lane          Buffered              0.00      0.00             NaN                  1.00           0.00
+5   Port / S1 lane  Optimised (knee)           2039.70      2.77           31.36                  0.01          22.98
+6          Factory        Lean (JIT)           3392.69      4.70           13.02                  0.00          23.24
+7          Factory          Buffered            867.96      1.18           23.53                  0.01          12.87
+8          Factory  Optimised (knee)           2569.43      3.50           16.49                  0.00          25.75
+9         DC North        Lean (JIT)           2283.56      3.20            3.03                  0.00          24.95
+10        DC North          Buffered           1987.14      2.70            5.17                  0.00          22.81
+11        DC North  Optimised (knee)           1683.75      2.29            7.25                  0.00          20.73
+12         DC West        Lean (JIT)           2293.84      3.21            3.04                  0.00          24.95
+13         DC West          Buffered           1980.76      2.69            5.34                  0.00          22.65
+14         DC West  Optimised (knee)           1688.83      2.30            7.25                  0.00          20.74
+
+===== [19/22] Real M5 | tabular Q-learning Tue Nov 17 22:56:16 2026 =====
+trained in 268s
+                                  total_L                                               lost                                  
+policy                   Optimised (knee) Optimised + dual Q-learning agent Optimised (knee) Optimised + dual Q-learning agent
+scenario                                                                                                                      
+No disruption                       12.14            12.14            15.37             0.00             0.00             0.00
+Supplier outage                     15.74            22.71            20.67             2.44             1.11             0.21
+Port blockage                       12.36            16.76            15.28             0.34             0.05             0.00
+Demand surge                        13.52            13.52            16.57             0.97             0.97             0.72
+Factory capacity loss               13.05            13.05            16.19             0.75             0.75             0.68
+DC flood (North)                    12.68            12.68            15.90             0.27             0.27             0.27
+Compound: outage + surge            23.35            26.17            24.71             6.48             3.64             2.61
+                  total_L   op_L  lost    rec
+policy                                       
+Optimised (knee)    14.69  11.65  1.61  12.28
+Optimised + dual    16.72  14.88  0.97  11.81
+Q-learning agent    17.81  16.59  0.64   8.17
+act_Wait              0.001526
+act_S1 to 20d         0.004553
+act_S1 to 32d         0.489393
+act_S2 to 15d         0.206719
+act_S2 to 25d         0.297038
+act_Re-route to S2    0.000770
+dtype: float64
+total 275s
+
+===== [20/22] Real M5 | deep Q-network on GPU Tue Nov 17 23:00:53 2026 =====
