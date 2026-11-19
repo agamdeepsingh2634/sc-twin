@@ -94,3 +94,8 @@ The code, analysis and documentation were developed with the help of Claude (Ant
 
 ## Licence
 Released under the [MIT Licence](LICENSE). The Walmart M5 data belong to their owners and are not redistributed here.
+
+
+## Real-data replay (future scope)
+
+`realdata/` replays 33 months of real DataCo orders with real lead times from Olist and USAID SCMS through the twin's reorder logic. See `realdata/README.md`.

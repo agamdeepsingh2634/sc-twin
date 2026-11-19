@@ -1,0 +1,8 @@
+id,name,type,source,backup,lead_days,demand_per_day,capacity_per_day
+supplier,Main supplier,supplier,,,,,
+central-dc,Central DC,dc,supplier,,14,242.5,
+puerto-rico,Puerto Rico store,store,central-dc,,4.0,99.0,
+california,California store,store,central-dc,,4.0,39.8,
+new-york,New York store,store,central-dc,,3.9,16.2,
+texas,Texas store,store,central-dc,,4.0,12.5,
+rest-of-us,Rest of US store,store,central-dc,,4.0,74.9,
